@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- 🎬 HERO SECTION -->
+<section class="hero">
+
+    <div class="container hero-content">
+        <p class="eyebrow">Lounge Bar • Cocktails • Food</p>
+
+        <h1>
+            Your evening<br>
+            <span>starts here.</span>
+        </h1>
+
+        <p>
+            Warm lights, crafted drinks, and unforgettable moments.
+        </p>
+
+        <div class="hero-actions">
+            <a href="{{ url_for('menu') }}" class="btn primary">View Menu</a>
+            <a href="{{ url_for('reserve_map') }}" class="btn secondary">Reserve Table</a>
+        </div>
+    </div>
+
+</section>
+
+<!-- 🍹 SHOWCASE 1 -->
+<section class="section dark-section">
+    <div class="container two-column">
+
+        <img src="{{ url_for('static', filename='images/drink.png') }}" class="showcase-img">
+
+        <div>
+            <p class="eyebrow">Signature Drinks</p>
+            <h2>Citrus in every sip.</h2>
+            <p>Crafted cocktails with bold flavors and smooth finish.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- 🍽️ SHOWCASE 2 -->
+<section class="section">
+    <div class="container two-column">
+
+        <div>
+            <p class="eyebrow">Food</p>
+            <h2>Light and tasty</h2>
+            <p>Fresh ingredients, balanced flavors, perfect for any time.</p>
+        </div>
+
+        <img src="{{ url_for('static', filename='images/food.png') }}" class="showcase-img">
+
+    </div>
+</section>
+
+{% endblock %}

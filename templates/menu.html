@@ -14,12 +14,12 @@
     <div class="container">
 
         <div class="menu-tabs">
-            {% for category in menu_data %}
+            {% for category in menu %}
             <a href="#{{ category.category|lower }}">{{ category.category }}</a>
             {% endfor %}
         </div>
 
-        {% for category in menu_data %}
+        {% for category in menu %}
         <div class="menu-category" id="{{ category.category|lower }}">
             <div class="section-heading">
                 <p class="eyebrow">{{ category.description }}</p>
@@ -27,9 +27,9 @@
             </div>
 
             <div class="menu-grid">
-                {% for item in category.items %}
+                {% for item in category["items"] %}
                 <article class="menu-card">
-                    <img src="{{ url_for('placeholder_image', text=item.name) }}" alt="{{ item.name }}">
+                    <img src="{{ url_for('placeholder', text=item.name) }}" alt="{{ item.name }}">
 
                     <div class="menu-card-body">
                         <h3>{{ item.name }}</h3>
