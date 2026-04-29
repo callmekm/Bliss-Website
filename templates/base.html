@@ -22,7 +22,7 @@
         </div>
 
         <!-- BURGER -->
-        <div class="burger" id="burger">
+        <div class="burger" id="burger" aria-label="Open menu" role="button" tabindex="0">
             <span></span>
             <span></span>
             <span></span>
@@ -31,7 +31,7 @@
         <!-- NAV -->
         <nav class="nav" id="nav">
             <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('menu') }}">Menu</a>
+            <a href="#menu">Menu</a>
             <a href="{{ url_for('reserve_map') }}">Reserve</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -39,23 +39,110 @@
     </div>
 </header>
 
-<script>
-const burger = document.getElementById("burger");
-const nav = document.getElementById("nav");
-
-burger.addEventListener("click", () => {
-    nav.classList.toggle("active");
-    burger.classList.toggle("open");
-});
-</script>
-
 <!-- 🔽 PAGE CONTENT -->
 <main>
     {% block content %}{% endblock %}
 </main>
 
+<!-- ✅ Slider script MUST be after content so it can find #showcaseData etc. -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===== Burger Menu ===== */
+  const burger = document.getElementById("burger");
+  const nav = document.getElementById("nav");
+
+  if (burger && nav) {
+    const toggleMenu = () => {
+      nav.classList.toggle("active");
+      burger.classList.toggle("open");
+    };
+
+    burger.addEventListener("click", toggleMenu);
+
+    nav.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        nav.classList.remove("active");
+        burger.classList.remove("open");
+      });
+    });
+  }
+
+  /* ===== Header Scroll ===== */
+  const header = document.querySelector(".site-header");
+  if (header) {
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 10);
+    });
+  }
+
+  /* ===== Showcase Slider (SAFE) ===== */
+  const dataEl = document.getElementById("showcaseData");
+
+  if (dataEl) {
+    try {
+      const slides = JSON.parse(dataEl.textContent.trim());
+
+      const img = document.getElementById("showcaseImg");
+      const eyebrow = document.getElementById("showcaseEyebrow");
+      const title = document.getElementById("showcaseTitle");
+      const desc = document.getElementById("showcaseDesc");
+      const dots = document.querySelectorAll(".showcase-dots .dot");
+
+      let idx = 0;
+
+      function render(i) {
+        const s = slides[i];
+        if (!s) return;
+
+        img.src = s.img;
+        eyebrow.textContent = s.eyebrow;
+        title.textContent = s.title;
+        desc.textContent = s.desc;
+
+        dots.forEach((d, di) => d.classList.toggle("active", di === i));
+      }
+
+      dots.forEach((d) => {
+        d.addEventListener("click", () => {
+          idx = Number(d.dataset.slide);
+          render(idx);
+        });
+      });
+
+      render(idx);
+
+      setInterval(() => {
+        idx = (idx + 1) % slides.length;
+        render(idx);
+      }, 4000);
+
+    } catch (e) {
+      console.log("Slider JSON error:", e);
+    }
+  }
+
+  /* ===== MENU DROPDOWN (SAFE) ===== */
+  const toggles = document.querySelectorAll(".menu-toggle");
+
+  if (toggles.length > 0) {
+    toggles.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const items = btn.nextElementSibling;
+
+        if (!items) return;
+
+        items.style.display =
+          items.style.display === "block" ? "none" : "block";
+      });
+    });
+  }
+
+});
+</script>
+
 <!-- 🔻 FOOTER -->
-<footer class="footer">
+<footer class="footer" id="contact">
     <div class="footer-container">
 
         <!-- LEFT: BRAND -->
@@ -66,17 +153,18 @@ burger.addEventListener("click", () => {
 
         <!-- CENTER: LOCATION -->
         <div class="footer-col">
-    <h4>Location</h4>
-    <p>Strumica, North Macedonia</p>
-    <p>Main Street 123</p>
-</div>
+            <h4>Location</h4>
+            <p>Strumica, North Macedonia</p>
+            <p>Main Street 123</p>
+        </div>
 
-<div class="footer-col">
-    <h4>Contact</h4>
-    <p>📞 071 251 690</p>
-    <p>📧 info@bliss.mk</p>
-    <p>Instagram: @bliss</p>
-</div>
+        <!-- RIGHT: CONTACT -->
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>📞 071 251 690</p>
+            <p>📧 info@bliss.mk</p>
+            <p>Instagram: @bliss</p>
+        </div>
 
     </div>
 
@@ -85,3 +173,6 @@ burger.addEventListener("click", () => {
         <p>© 2026 Bliss Lounge Bar. All rights reserved.</p>
     </div>
 </footer>
+
+</body>
+</html>

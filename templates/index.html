@@ -5,54 +5,162 @@
 <!-- 🎬 HERO SECTION -->
 <section class="hero">
 
-    <div class="container hero-content">
-        <p class="eyebrow">Lounge Bar • Cocktails • Food</p>
+    <div class="dragonfly-bg"></div>
 
-        <h1>
-            Your evening<br>
-            <span>starts here.</span>
-        </h1>
+    <div class="hero-content">
 
-        <p>
-            Warm lights, crafted drinks, and unforgettable moments.
-        </p>
+    <h1 class="hero-title">
+        Welcome to <br>
+        <span>BLISS</span>
+    </h1>
 
-        <div class="hero-actions">
-            <a href="{{ url_for('menu') }}" class="btn primary">View Menu</a>
-            <a href="{{ url_for('reserve_map') }}" class="btn secondary">Reserve Table</a>
-        </div>
+    <p class="hero-eyebrow">
+         • Lounge Bar • 
+    </p>
+
+    <p class="hero-sub">
+        Experience warm lights, crafted drinks, and unforgettable moments.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="#menu" class="btn primary">View Menu</a>
+        <a href="/reserve_map" class="btn secondary">Reserve Table</a>
     </div>
+
+</div>
+</section>
+
+
+<!-- ✅ SHOWCASE SLIDER -->
+<section class="section dark-section" id="showcase">
+  <div class="container showcase">
+
+    <div class="showcase-media">
+      <img id="showcaseImg"
+           src="{{ url_for('static', filename='images/drink.png') }}"
+           alt="Bliss showcase"
+           class="showcase-img">
+    </div>
+
+    <div class="showcase-text">
+      <p class="eyebrow" id="showcaseEyebrow">Signature Drinks</p>
+      <h2 id="showcaseTitle">Citrus in every sip.</h2>
+      <p id="showcaseDesc">Crafted cocktails with bold flavors and smooth finish.</p>
+
+      <div class="showcase-dots">
+        <button class="dot active" type="button" data-slide="0"></button>
+        <button class="dot" type="button" data-slide="1"></button>
+        <button class="dot" type="button" data-slide="2"></button>
+        <button class="dot" type="button" data-slide="3"></button>
+        <button class="dot" type="button" data-slide="4"></button>
+      </div>
+    </div>
+
+  </div>
+
+  <script id="showcaseData" type="application/json">
+[
+  {
+    "img": "{{ url_for('static', filename='images/drink.png') }}",
+    "eyebrow": "Signature Drinks",
+    "title": "Citrus in every sip.",
+    "desc": "Crafted cocktails with bold flavors and smooth finish."
+  },
+  {
+    "img": "{{ url_for('static', filename='images/food.png') }}",
+    "eyebrow": "Food",
+    "title": "Light and tasty",
+    "desc": "Fresh ingredients, balanced flavors, perfect for any time."
+  },
+  {
+    "img": "{{ url_for('static', filename='images/stir-your-soul.png') }}",
+    "eyebrow": "Cocktails",
+    "title": "Crafted to stir your soul.",
+    "desc": "Bold, smooth, and made for late-night moments."
+  },
+  {
+    "img": "{{ url_for('static', filename='images/perfect-coffee.png') }}",
+    "eyebrow": "Coffee",
+    "title": "The perfect coffee.",
+    "desc": "Rich aroma, creamy foam, and comfort in every sip."
+  },
+  {
+    "img": "{{ url_for('static', filename='images/orange-pour.png') }}",
+    "eyebrow": "Fresh",
+    "title": "Something different.",
+    "desc": "Refreshing flavors, bright notes, and a clean finish."
+  }
+]
+</script>
+</section>
+
+<!-- 🔥 DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- 🍽️ MENU SECTION -->
+<section class="section" id="menu">
+
+  <h2 class="menu-title">MENU</h2>
+
+  <!-- CATEGORY -->
+  <div class="menu-category">
+
+    <button class="menu-toggle">Non-Alcoholic Drinks</button>
+
+    <div class="menu-items">
+  <p>Coca-Cola <span>80 MKD</span></p>
+  <p>Fanta <span>80 MKD</span></p>
+  <p>Cedevita <span>60 MKD</span></p>
+  <p>Sprite <span>80 MKD</span></p>
+  <p>Iced Tea <span>90 MKD</span></p>
+</div>
+
+  </div>
+
+  <div class="menu-category">
+
+    <button class="menu-toggle">Pizza</button>
+
+    <div class="menu-items">
+  <p>Margherita <span>320 MKD</span></p>
+  <p>Pepperoni <span>360 MKD</span></p>
+  <p>Capricciosa <span>380 MKD</span></p>
+  <p>Quattro Formaggi <span>400 MKD</span></p>
+  <p>BBQ Chicken <span>420 MKD</span></p>
+</div>
+
+  </div>
+
+  <div class="menu-category">
+  <button class="menu-toggle">Alcoholic Drinks</button>
+  <div class="menu-items">
+    <p>Beer <span>120 MKD</span></p>
+    <p>Wine <span>180 MKD</span></p>
+    <p>Whiskey <span>250 MKD</span></p>
+  </div>
+</div>
+
+<div class="menu-category">
+  <button class="menu-toggle">Pasta</button>
+  <div class="menu-items">
+    <p>Carbonara <span>320 MKD</span></p>
+    <p>Bolognese <span>340 MKD</span></p>
+    <p>Alfredo <span>330 MKD</span></p>
+  </div>
+</div>
+
+<div class="menu-category">
+  <button class="menu-toggle">Burgers</button>
+  <div class="menu-items">
+    <p>Classic Burger <span>280 MKD</span></p>
+    <p>Cheese Burger <span>300 MKD</span></p>
+    <p>Double Burger <span>350 MKD</span></p>
+  </div>
+</div>
 
 </section>
 
-<!-- 🍹 SHOWCASE 1 -->
-<section class="section dark-section">
-    <div class="container two-column">
-
-        <img src="{{ url_for('static', filename='images/drink.png') }}" class="showcase-img">
-
-        <div>
-            <p class="eyebrow">Signature Drinks</p>
-            <h2>Citrus in every sip.</h2>
-            <p>Crafted cocktails with bold flavors and smooth finish.</p>
-        </div>
-
-    </div>
-</section>
-
-<!-- 🍽️ SHOWCASE 2 -->
-<section class="section">
-    <div class="container two-column">
-
-        <div>
-            <p class="eyebrow">Food</p>
-            <h2>Light and tasty</h2>
-            <p>Fresh ingredients, balanced flavors, perfect for any time.</p>
-        </div>
-
-        <img src="{{ url_for('static', filename='images/food.png') }}" class="showcase-img">
-
-    </div>
-</section>
+<!-- 🔥 ADD THIS LINE -->
+<div class="section-divider"></div>
 
 {% endblock %}
